@@ -23,7 +23,7 @@ include 'includes/header_menu.php';
 include 'includes/check-if-added.php';
 ?>
 <!--header ends -->
-<div class="container" style="margin-top:65px">
+<div class="container" style="margin-top:10px">
          <!--jumbutron start-->
         <div class="jumbotron text-center">
             <h1>Welcome to Planet Shopify!</h1>
@@ -38,22 +38,68 @@ include 'includes/check-if-added.php';
             </ol>
         </nav>
         <form action="products.php" class="row text-center" method="post"> 
-        Search: <input type="text" name="search" class="input" /><br /> 
-        Price Max: <input type="number" name="price_max" class="input"  value=5000 /><br /> 
-        Price Min: <input type="number" name="price_min" class="input"  value=1 /><br /> 
-        <input type="submit" class="btn" value="Submit" /> 
-        <?php 
-                $sql = "SELECT DISTINCT category FROM products";
-                $result = mysqli_query($con, $sql);
-                echo "<select name='category' class='flex flex-end' >";
-                echo "<option value=''>All Categories</option>";
-                if ($result->num_rows > 0) {
-                  while($row = $result->fetch_assoc()) {
-                    echo "<option value='" . $row["category"] . "'>" . $row["category"] . "</option>";
-                  }
-                }
-                echo "</select>";
-        ?>
+<div class="container mt-5">
+
+<div class="row d-flex justify-content-center">
+    <div class="col-md-10">
+        <div class="card p-3  py-4">
+            <h5>An Easier way to find your Dream Products</h5>
+            <div class="row g-3 mt-2">
+                <div class="col-md-3">
+                <?php 
+                    $sql = "SELECT DISTINCT category FROM products";
+                    $result = mysqli_query($con, $sql);
+                    echo "<select name='category' class='btn btn-secondary dropdown-toggle'  >";
+                    echo "<option value='' class='dropdown-item'>All Categories</option>";
+                    if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        echo "<option value='"  . $row["category"] . " 'class='dropdown-item'>" . $row["category"] . "</option>";
+                    }
+                    }
+                    echo "</select>";
+                ?>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" name="search" class="form-control" placeholder="Enter products name...">
+                </div>
+                <div class="col-md-3">
+                    <input type="submit" class="btn btn-secondary btn-block" value="Search" /> 
+                </div>
+            </div>
+            <div class="mt-3">
+<a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" class="advanced">
+Advance Search With Filters <i class="fa fa-angle-down"></i>
+</a>
+
+
+<div class="collapse" id="collapseExample">
+<div class="card card-body">
+
+<div class="row">
+
+<div class="col-md-6">
+    <span>Price-Max
+    <input type="number" placeholder="Price-Max" name="price_max" value="50000" class="form-control">
+    
+</div>
+
+
+<div class="col-md-6"><span>Price-Min
+    <input type="number" placeholder="Price-Min" name="price_min" value="1" class="form-control">
+</div>
+</div>
+</div>
+</div>
+            </div>
+        </div>  
+    </div>
+ </div>
+
+
+
+
+
+</div>
         <!--breadcrumb end-->
     <hr/>
     <!--menu list-->
