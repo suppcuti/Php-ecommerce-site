@@ -36,9 +36,10 @@ include 'includes/check-if-added.php';
                 <li class="breadcrumb-item active" aria-current="page">Products</li>
             </ol>
         </nav>
-        <form action="products.php" class="row text-center" method="post"> 
-        Search: <input type="text" name="search" class="input" /><br /> 
-        <input type="submit" class="btn" value="Submit" /> 
+        <form action="products.php" class="row text-center form-inline d-flex justify-content-center md-form form-sm mt-0" method="post"> 
+             <input type="text" placeholder="Search" aria-label="Search" name="search"class="form-control form-control-sm ml-3 w-75" />
+        <input type="submit" class="btn" style="margin-left: 25px;" value="Submit" /> 
+
         <!--breadcrumb end-->
     <hr/>
     <!--menu list-->
