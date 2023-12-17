@@ -1,5 +1,3 @@
-
-
 <?php
 require ("includes/common.php");
 session_start();
@@ -45,7 +43,7 @@ session_start();
                             </thead>
                             <tbody>
                                 <?php 
-                                $total = 0;
+                                $total = 0; $total_ex = 0;
                                     $query = "SELECT * FROM users_products  ";
                                     $query_run = mysqli_query($con, $query);
 
@@ -76,6 +74,7 @@ session_start();
                                                     foreach($query_run as $product)
                                                     {
                                                         echo $product['price'];  
+                                                        $total_ex = $total_ex +$product['price'];
                                                         if ($student['status'] == 'Confirmed'){
                                                             $total =  $total + $product['price']; 
                                                         }
@@ -97,7 +96,8 @@ session_start();
                             </tbody>
                         </table>
                                     <div class='row'>
-                                        <p class="flex-end">Total : <?php echo $total?></p>
+                                        <p class="flex-end">Total Confirmed: <?php echo $total?></p>
+                                        <p class="flex-end">Total Expected: <?php echo $total_ex?></p>
                                     </div>
                     </div>
                 </div>
