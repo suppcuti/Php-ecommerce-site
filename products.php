@@ -39,12 +39,12 @@ include 'includes/check-if-added.php';
         </nav>
         <form action="products.php" class="row text-center" method="post"> 
         Search: <input type="text" name="search" class="input" /><br /> 
+        Price Max: <input type="number" name="price_max" class="input"  value=5000 /><br /> 
+        Price Min: <input type="number" name="price_min" class="input"  value=1 /><br /> 
         <input type="submit" class="btn" value="Submit" /> 
         <?php 
                 $sql = "SELECT DISTINCT category FROM products";
                 $result = mysqli_query($con, $sql);
-                
-                // Display the categories in a dropdown list
                 echo "<select name='category' class='flex flex-end' >";
                 echo "<option value=''>All Categories</option>";
                 if ($result->num_rows > 0) {
@@ -60,10 +60,31 @@ include 'includes/check-if-added.php';
     <div class="container">
     <div class="row text-center" >
 
-    <?php
-
-        
-        if(isset($_POST['search'])){
+    <?php        
+        if(isset($_POST['search']) && isset($_POST['category']) && isset($_POST['price_min']) && isset($_POST['price_max'])){
+            $search = $_POST['search'];
+            $category = $_POST['category'];
+            $price_min = $_POST['price_min'];
+            $price_max = $_POST['price_max'];
+            if ($category == "") {
+                $query = "SELECT * FROM products WHERE name LIKE '%{$search}%' AND price BETWEEN {$price_min} AND {$price_max}";
+            } else {
+                $query = "SELECT * FROM products WHERE name LIKE '%{$search}%' AND category = '{$category}' AND price BETWEEN {$price_min} AND {$price_max}";
+            }
+        } else if(isset($_POST['search']) && isset($_POST['price_min']) && isset($_POST['price_max'])){
+            $search = $_POST['search'];
+            $price_min = $_POST['price_min'];
+            $price_max = $_POST['price_max'];
+            $query = "SELECT * FROM products WHERE name LIKE '%{$search}%' AND price BETWEEN {$price_min} AND {$price_max}";
+        } else if(isset($_POST['search']) && isset($_POST['category'])){
+            $search = $_POST['search'];
+            $category = $_POST['category'];
+            if ($category == "") {
+                $query = "SELECT * FROM products WHERE name LIKE '%{$search}%'";
+            } else {
+                $query = "SELECT * FROM products WHERE name LIKE '%{$search}%' AND category = '{$category}'";
+            }
+        } else if(isset($_POST['search'])){
             $search = $_POST['search'];
             $query = "SELECT * FROM products WHERE name LIKE '%{$search}%' ";
         }
