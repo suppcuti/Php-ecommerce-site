@@ -75,7 +75,8 @@ session_start();
                                                     $query_run = mysqli_query($con, $query);
                                                     foreach($query_run as $product)
                                                     {
-                                                        echo $product['price'];  
+                                                        echo '$ ';
+                                                        echo + $product['price']  ;  
                                                         $total_ex = $total_ex +$product['price'];
                                                         if ($student['status'] == 'Confirmed'){
                                                             $total =  $total + $product['price']; 
@@ -98,8 +99,8 @@ session_start();
                             </tbody>
                         </table>
                                     <div class='row'>
-                                        <p class="flex-end">Total Confirmed: <?php echo $total?></p>
-                                        <p class="flex-end">Total Expected: <?php echo $total_ex?></p>
+                                        <p class="flex-end">Total Confirmed: $<?php echo $total?></p>
+                                        <p class="flex-end">Total Expected: $<?php echo $total_ex?></p>
                                     </div>
                     </div>
                 </div>

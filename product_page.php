@@ -81,16 +81,18 @@ if(mysqli_num_rows($query_run) > 0)
                             <?php
                             } else {
                             if (check_if_added_to_cart( $product['id'])) {
-                            echo '<p><a href="#" class="btn btn-warning  text-white" disabled>Added to cart</a></p>';
+                            echo '<p><a href="#" class="btn cart px-auto bg-primary" disabled>Added to cart</a></p>';
                             } else {
                                 ?>
                                 <p>
-                                    <a href="cart-add.php?id=<?= $product['id']; ?>" name="add" value="add" class="btn btn-info btn-sm">Add to cart</a>
+                                    <a href="cart-add.php?id=<?= $product['id']; ?>" name="add" value="add" class="btn cart px-auto bg-dark text-white">Add to cart</a>
                                     <p>
                                 <?php
                                 
                                 }
                             }
+
+                            
                             ?>
                             
                         </div>

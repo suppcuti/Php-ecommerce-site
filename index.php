@@ -48,7 +48,7 @@ include 'includes/check-if-added.php';
                  </a>
              </div>
             <div class="col-6 col-md-3 py-3 " >
-                <a href="products.php?category=shirt"  >
+                <a href="products.php?category=t-shirt"  >
                   <img src="images/clothing.jpg" class="img-fluid zoom" alt="" style="border-radius:0.5rem" >
                      <div class="h5 pt-3 font-weight-bolder">
                         Clothing
@@ -56,7 +56,7 @@ include 'includes/check-if-added.php';
                   </a>
              </div>
             <div class="col-6 col-md-3 py-3">
-                <a href="products.php?category=shoes">
+                <a href="products.php?category=shoe">
                  <img src="images/shoes.jpg" class="img-fluid   " alt="" style="border-radius:0.5rem">
                 <div class="h5 pt-3 font-weight-bolder">
                     Shoes
@@ -64,7 +64,7 @@ include 'includes/check-if-added.php';
              </a>
              </div>
             <div class="col-6 col-md-3 py-3">
-                <a href="products.php?category=headphones">
+                <a href="products.php?category=headphone">
                  <img src="images/headphones.jpg" class="img-fluid  " alt="" style="border-radius:0.5rem">
                  <div class="h5 pt-3 font-weight-bolder">
                     Headphones

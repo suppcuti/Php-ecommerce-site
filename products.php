@@ -1,9 +1,7 @@
 <?php
 session_start();
 require ("includes/common.php");
-if (isset($_GET['category'])) {
-    $_SESSION['category'] = $_GET['category'];
-  }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +15,9 @@ if (isset($_GET['category'])) {
     <link href='https://fonts.googleapis.com/css?family=Delius Swash Caps' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Andika' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
+    <style>
 
+    </style>
 </head>
 <body>
 <!--header -->
@@ -41,10 +41,10 @@ include 'includes/check-if-added.php';
             </ol>
         </nav>
         <form action="products.php" class="row text-center" method="post"> 
-<div class="container mt-5">
+<div class="container mt-3">
 
-<div class="row d-flex justify-content-center">
-    <div class="col-md-10">
+<div class="row d-flex justify-content-center ">
+    <div class="col-md-12">
         <div class="card p-3  py-4">
             <h5>An Easier way to find your Dream Products</h5>
             <div class="row g-3 mt-2">
@@ -76,7 +76,11 @@ Advance Search With Filters <i class="fa fa-angle-down"></i>
 
 
 <div class="collapse" id="collapseExample">
-<div class="card card-body">
+<div class="card " style="
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+">
 
 <div class="row">
 
@@ -106,7 +110,7 @@ Advance Search With Filters <i class="fa fa-angle-down"></i>
         <!--breadcrumb end-->
     <hr/>
     <!--menu list-->
-    <div class="container">
+    <div class="container  mt-3">
     <div class="row text-center" >
 
     <?php        
@@ -136,7 +140,14 @@ Advance Search With Filters <i class="fa fa-angle-down"></i>
         } else if(isset($_POST['search'])){
             $search = $_POST['search'];
             $query = "SELECT * FROM products WHERE name LIKE '%{$search}%' ";
-        }
+        }else if (isset($_GET['category'])) {
+            $category = $_GET['category'];
+            if ($category == "") {
+                $query = "SELECT * FROM products WHERE name LIKE '%{$search}%'";
+            } else {
+                $query = "SELECT * FROM products WHERE category = '{$category}'";
+            }
+          }
         else
         $query = "SELECT * FROM products";
         $query_run = mysqli_query($con, $query);
@@ -155,35 +166,30 @@ Advance Search With Filters <i class="fa fa-angle-down"></i>
             $image_url = $dir_path . "/" . $filename;           
         ?>
     <div class="col-md-3 col-6 py-2">
-        <div class="card">
-            <img src= <?php echo $image_url; ?> alt="" class="img-fluid pb-1 card-img-top" style="height: 200px;">
-            
-            <div class="figure-caption">
-                <h6>
-                <a href="product_page.php?product_id=<?= $product['id']; ?>">
-                        <?= $product['name']; ?>
-                </a>
-                    
-                </h6>
-                <h6>Price :<?= $product['price']; ?></h6>
-
-                <?php if (!isset($_SESSION['email'])) {?>
-                <p>
-                    <a href="index.php#login" role="button" class="btn btn-warning  text-white ">Add To Cart</a></p>
-                <?php
-                } else {
-                if (check_if_added_to_cart( $product['id'])) {
-                echo '<p><a href="#" class="btn btn-warning  text-white" disabled>Added to cart</a></p>';
-                } else {
-                    ?>
+        <div class="card ">
+            <img src= <?php echo $image_url; ?> alt="" class="img-fluid mx-auto img-thumbnail" style="height: 200px; ">
+            <div class="card-body text-center mx-auto">
+                <div class='cvp'>
+                    <h5 class="card-title font-weight-bold"><?= $product['name']; ?></h5>
+                    <p class="card-text">$<?= $product['price']; ?></p>
+                    <a href="product_page.php?product_id=<?= $product['id']; ?>" class="btn details px-auto">view details</a><br />
+                    <?php if (!isset($_SESSION['email'])) {?>
                     <p>
-                        <a href="cart-add.php?id=<?= $product['id']; ?>" name="add" value="add" class="btn btn-info btn-sm">Add to cart</a>
-                        <p>
+                        <a href="index.php#login" role="button" class="btn cart px-auto bg-dark text-white">Add To Cart</a></p>
                     <?php
-                    
+                    } else {
+                    if (check_if_added_to_cart( $product['id'])) {
+                    echo '<p><a href="#" class="btn cart px-auto bg-primary" disabled>Added to cart</a></p>';
+                    } else {
+                        ?>
+                        <p>
+                            <a href="cart-add.php?id=<?= $product['id']; ?>" name="add" value="add" class="btn cart px-auto bg-dark text-white">Add to cart</a>
+                            <p>
+                        <?php
+                        }
                     }
-                }
-                ?>
+                    ?>
+                </div>
             </div>
         </div>
     </div>

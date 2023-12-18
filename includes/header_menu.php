@@ -14,10 +14,11 @@
                                Products
                             </a>
                                <div class="dropdown-menu">
-                                   <a href="products.php#watch" class="dropdown-item">Watches</a>
-                                   <a href="products.php#shirt" class="dropdown-item">T-Shirts</a>
-                                   <a href="products.php#shoes" class="dropdown-item">Shoes</a>
-                                   <a href="products.php#headphones" class="dropdown-item">Headphones/Speakers</a>
+                                   <a href="products.php" class="dropdown-item">All category</a>
+                                   <a href="products.php?category=watch" class="dropdown-item">Watches</a>
+                                   <a href="products.php?category=t-shirt" class="dropdown-item">T-Shirts</a>
+                                   <a href="products.php?category=shoe" class="dropdown-item">Shoes</a>
+                                   <a href="products.php?category=headphone" class="dropdown-item">Headphones/Speakers</a>
                                </div>
                            
                        </li>
